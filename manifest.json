@@ -1,0 +1,24 @@
+{
+  "name": "SW Ads",
+  "version": "1.0.0",
+  "description": "Connect Shopee account into Salework Ads easier!",
+  "manifest_version": 3,
+  "author": "chinhpc",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": ""
+  },
+  "host_permissions": [
+    "*://*.salework.net/",
+    "*://*.shopee.vn/"
+  ],
+  "permissions": [
+    "cookies"
+  ],
+  "icons": {
+    "16": "icon/ads.png",
+    "32": "icon/ads.png",
+    "48": "icon/ads.png",
+    "128": "icon/ads.png"
+  }
+}
