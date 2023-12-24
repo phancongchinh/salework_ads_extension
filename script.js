@@ -54,15 +54,15 @@ async function clearShopeeCookies(spcCookies) {
 
 async function getConnectedShops() {
   const evnToken = await getCookies("https://salework.net", "evn-token");
-  if (!evnToken || !evnToken?.value) return;
-
-  const body = {
-    "evn-token": evnToken?.value,
+  if (!evnToken || !evnToken?.value) {
+    if (confirm("Vui lòng đăng nhập tài khoản Salework cần liên kết và thao tác lại!")) {
+      window.open("https://salework.net/login/");
+    }
   }
+
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
-      console.log(this.responseText);
       const response = this.response;
       const swUsername = response['sw_username'];
       const dataTable = document.getElementById("data-table");
@@ -92,9 +92,11 @@ async function getConnectedShops() {
       })
     }
   };
-  // xhr.responseType = 'json';
-  xhr.open("post", "http://ads.salework.net/api/extension/connected", true);
-  xhr.send(JSON.stringify(body));
+  xhr.responseType = 'json';
+  xhr.open("post", "https://ads.salework.net/api/extension/connected", true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.send(JSON.stringify({"evn-token": evnToken?.value}));
 }
 
 getConnectedShops();

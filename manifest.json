@@ -13,7 +13,8 @@
     "*://*.shopee.vn/"
   ],
   "permissions": [
-    "cookies"
+    "cookies",
+    "background"
   ],
   "icons": {
     "16": "icon/ads.png",
